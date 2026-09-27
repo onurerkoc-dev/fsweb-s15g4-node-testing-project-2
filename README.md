@@ -7,6 +7,29 @@
 Bu projede, seçtiğiniz bir kaynak üzerinde bazı CRUD işlemleri gerçekleştirmek için, uçnoktalar içeren, Node ve Express kullanarak bir RESTful API oluşturacaksınız.
 2 yada 3 uç nokta yeterlidir. Veriler bir SQLlite veritabanında tutulmalıdır.
 
+Bu çözüm görev kaynakları için iki rota kullanır: `/api/tasks` ve `/api/tasks/:id`.
+Görevleri listeleyebilir ve oluşturabilir, tek bir görevi okuyabilir, güncelleyebilir veya silebilirsiniz.
+
+## Kurulum ve çalıştırma
+
+```sh
+npm install
+npm run migrate
+npm run seed
+npm start
+```
+
+API `http://localhost:3000` adresinde başlar. Örnek bir görev oluşturmak için:
+
+```sh
+curl -X POST http://localhost:3000/api/tasks \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Test API","description":"Supertest ile doğrula"}'
+```
+
+Güncelleme için `PATCH /api/tasks/:id`, silme için `DELETE /api/tasks/:id` kullanın.
+`npm run rollback` son migration'ı geri alır. Testler ayrı ve bellek içi SQLite veritabanında çalışır.
+
 ## Gereklilikler
 
 - Supertest'i kullanarak en az on test yazın.
@@ -28,6 +51,14 @@ Projenizi bir araya getirmenize yardımcı olacak görevlerin bir kontrol listes
 - Birkaç veritabanı erişim işlevi ve birkaç uç nokta ile basit ve hızlı bir uygulama oluşturun.
 - Postman, HTTPie veya benzerini kullanarak uç noktalarınızı manuel olarak test edin.
 - Supertest ile uç noktalarınızı test edin.
+
+## Testler
+
+```sh
+npm test
+```
+
+Bu komut 16 Supertest senaryosunu çalıştırır ve sonuç özetini `ctrf/ctrf-report.json` dosyasına yazar.
 
 ## NextGen Testleri Çalıştırma
 
